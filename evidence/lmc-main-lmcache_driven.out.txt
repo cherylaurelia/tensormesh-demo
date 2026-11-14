@@ -1,0 +1,174 @@
+==> CPU device test (OS: Darwin, Mode: vllm_e2e)
+    Python: Python 3.12.16
+    Bench transfer mode: engine_driven
+    E2E transport mode: engine_driven
+    Request transport: zmq
+    Ports: bench=18080/15555, e2e=18081/15557/18000
+
+==> Running CPU vLLM e2e test
+==> CPU vLLM e2e test (OS: Darwin)
+    Python: Python 3.12.16
+    uname:  Darwin eduroam-campus-10-36-62-68.campus-dynamic.uwaterloo.ca 25.5.0 Darwin Kernel Version 25.5.0: Mon Apr 27 20:41:12 PDT 2026; root:xnu-12377.121.6~2/RELEASE_ARM64_T6050 arm64
+ProductName:		macOS
+ProductVersion:		26.5.1
+BuildVersion:		25F80
+    LMCACHE_TRANSPORT_MODE=engine_driven
+    LMCACHE_DATA_MODE=shm
+    SKIP_INSTALL=1
+    Delegating to: ~/scout-clones/LMCache/.github/scripts/run-cpu-e2e-validation.sh
+Build ID: local
+Python: Python 3.12.16
+uv: uv 0.13.6 (Homebrew 2026-10-26 aarch64-apple-darwin)
+=== CPU Install Validation (Phase 1) — SKIPPED (SKIP_INSTALL=1) ===
+=== CPU E2E Validation (Phase 2) ===
+[Phase 2 / Step 1] numpy<2 install — SKIPPED (SKIP_INSTALL=1)
+[Phase 2 / Step 2] Preparing model facebook/opt-125m via download_gh_release_model.sh
+facebook/opt-125m already cached in ~/.cache/huggingface/hub/models--facebook--opt-125m/snapshots/8e3222ef756d4bdc256be5539b4a9d312e13bbf8, skipping download
+✅ Model download/check complete
+HF_HUB_OFFLINE=1 — serving facebook/opt-125m from the local HF hub cache
+[Phase 2 / Step 3] Starting LMCache server
+LMCache log: /tmp/cpu_device_e2e_engine_driven_zmq_lmcache.log
+Transport mode: engine-driven/shm (shared memory)
+LMCache server started (PID=36520)
+Waiting for LMCache healthcheck at http://localhost:18081/healthcheck (timeout: 30s)
+✅ LMCache server is healthy
+[Phase 2 / Step 4] Installing system libs (Linux only) and starting vLLM server
+Starting vLLM server...
+vLLM model: facebook/opt-125m
+vLLM extra args: <none>
+vLLM server started (PID=36542)
+Waiting for vLLM readiness at http://localhost:18000/v1/models (timeout: 300s)
+❌ vLLM server (PID=36542) exited before becoming ready
+❌ CPU install validation failed (exit code: 1)
+=== LMCache Server Log (/tmp/cpu_device_e2e_engine_driven_zmq_lmcache.log) ===
+[32;20m[2026-11-14 14:36:00,386] LMCache INFO:[0m torch_dev=StubCPUDevice(device_type=cpu), torch_device_type=cpu [3m(_device_detect.py:311:lmcache.v1.platform._device_detect)[0m
+
+ _     __  __    ____           _          
+| |   |  \/  |  / ___|__ _  ___| |__   ___      LMCache v0.0.0.dev0
+| |   | |\/| | | |   / _` |/ __| '_ \ / _ \     Website:  https://lmcache.ai/
+| |___| |  | | | |__| (_| | (__| | | |  __/     Recipes:  https://docs.lmcache.ai/recipes
+|_____|_|  |_|  \____\__,_|\___|_| |_|\___|     LinkedIn: https://www.linkedin.com/company/lmcache-lab
+Set LMCACHE_DISABLE_BANNER=1 to hide this banner.
+
+[32;20m[2026-11-14 14:36:01,024] LMCache INFO:[0m Discovered API module: cache_api [3m(router_discovery.py:53:lmcache.v1.utils.router_discovery)[0m
+[32;20m[2026-11-14 14:36:01,025] LMCache INFO:[0m Discovered API module: env_api [3m(router_discovery.py:53:lmcache.v1.utils.router_discovery)[0m
+[32;20m[2026-11-14 14:36:01,025] LMCache INFO:[0m Discovered API module: loglevel_api [3m(router_discovery.py:53:lmcache.v1.utils.router_discovery)[0m
+[32;20m[2026-11-14 14:36:01,026] LMCache INFO:[0m Discovered API module: metrics_api [3m(router_discovery.py:53:lmcache.v1.utils.router_discovery)[0m
+[32;20m[2026-11-14 14:36:01,026] LMCache INFO:[0m Discovered API module: periodic_thread_api [3m(router_discovery.py:53:lmcache.v1.utils.router_discovery)[0m
+[32;20m[2026-11-14 14:36:01,026] LMCache INFO:[0m Discovered API module: run_script_api [3m(router_discovery.py:53:lmcache.v1.utils.router_discovery)[0m
+[32;20m[2026-11-14 14:36:01,027] LMCache INFO:[0m Discovered API module: thread_api [3m(router_discovery.py:53:lmcache.v1.utils.router_discovery)[0m
+[32;20m[2026-11-14 14:36:01,027] LMCache INFO:[0m Discovered API module: common_api [3m(router_discovery.py:53:lmcache.v1.utils.router_discovery)[0m
+[32;20m[2026-11-14 14:36:01,028] LMCache INFO:[0m Discovered API module: config_api [3m(router_discovery.py:53:lmcache.v1.utils.router_discovery)[0m
+[32;20m[2026-11-14 14:36:01,028] LMCache INFO:[0m Discovered API module: info_api [3m(router_discovery.py:53:lmcache.v1.utils.router_discovery)[0m
+[32;20m[2026-11-14 14:36:01,029] LMCache INFO:[0m Discovered API module: l1_reconfigure_api [3m(router_discovery.py:53:lmcache.v1.utils.router_discovery)[0m
+[32;20m[2026-11-14 14:36:01,030] LMCache INFO:[0m Discovered API module: quota_api [3m(router_discovery.py:53:lmcache.v1.utils.router_discovery)[0m
+[32;20m[2026-11-14 14:36:01,031] LMCache INFO:[0m Discovered API module: reconfigure_api [3m(router_discovery.py:53:lmcache.v1.utils.router_discovery)[0m
+[33;20m[2026-11-14 14:36:01,038] LMCache WARNING:[0m LazyMemoryAllocator requires memory pinning which is not supported on the current backend. Disabling l1-use-lazy. [3m(config.py:326:lmcache.v1.distributed.config)[0m
+[32;20m[2026-11-14 14:36:01,039] LMCache INFO:[0m Starting LMCache HTTP server on http://127.0.0.1:18081 [3m(http_server.py:278:lmcache.v1.multiprocess.http_server)[0m
+INFO:     Started server process [36520]
+INFO:     Waiting for application startup.
+[32;20m[2026-11-14 14:36:01,059] LMCache INFO:[0m Starting LMCache HTTP server... (accelerator available: False) [3m(http_server.py:82:lmcache.v1.multiprocess.http_server)[0m
+[32;20m[2026-11-14 14:36:01,060] LMCache INFO:[0m OTel MeterProvider initialised with Prometheus fallback (standalone metrics HTTP server disabled; /metrics must be exposed by the caller), resource={'telemetry.sdk.language': 'python', 'telemetry.sdk.name': 'opentelemetry', 'telemetry.sdk.version': '1.40.0', 'service.instance.id': '4cb5b437-66e2-4217-94c4-42fcd488b92c', 'service.name': 'unknown_service'} [3m(otel_init.py:157:lmcache.v1.mp_observability.otel_init)[0m
+[32;20m[2026-11-14 14:36:01,067] LMCache INFO:[0m Starting L1EvictionController... [3m(eviction_controller.py:53:lmcache.v1.distributed.storage_controllers.eviction_controller)[0m
+[32;20m[2026-11-14 14:36:01,067] LMCache INFO:[0m Starting L2EvictionController... [3m(eviction_controller.py:250:lmcache.v1.distributed.storage_controllers.eviction_controller)[0m
+[32;20m[2026-11-14 14:36:01,067] LMCache INFO:[0m Starting StoreController... [3m(store_controller.py:314:lmcache.v1.distributed.storage_controllers.store_controller)[0m
+[32;20m[2026-11-14 14:36:01,068] LMCache INFO:[0m Starting PrefetchController... [3m(prefetch_controller.py:838:lmcache.v1.distributed.storage_controllers.prefetch_controller)[0m
+[32;20m[2026-11-14 14:36:01,068] LMCache INFO:[0m Using blake3 hash function [3m(token_hasher.py:109:lmcache.v1.common.token_hasher)[0m
+[32;20m[2026-11-14 14:36:01,071] LMCache INFO:[0m Computed NONE_HASH=b"~>\xff\x9e\xf7a:P4\x0e\xb1&w\xee\x03\xb8:\xc7Y\xfc\xba\x9b\xb3'\x05\xf0rH\xd5mG;" using hash function [3m(token_hasher.py:210:lmcache.v1.common.token_hasher)[0m
+[32;20m[2026-11-14 14:36:01,071] LMCache INFO:[0m TokenHasher initialized: chunk_size=128, hash_algorithm=blake3 [3m(token_hasher.py:97:lmcache.v1.common.token_hasher)[0m
+[32;20m[2026-11-14 14:36:01,071] LMCache INFO:[0m PeriodicThread SessionManager-cleanup-thread-11fdb0c80 entering main loop (interval=60.0s) [3m(periodic_thread.py:312:lmcache.v1.periodic_thread)[0m
+[32;20m[2026-11-14 14:36:01,071] LMCache INFO:[0m Started PeriodicThread: SessionManager-cleanup-thread-11fdb0c80 (level=medium, interval=60.0s, init_wait=0.0s) [3m(periodic_thread.py:254:lmcache.v1.periodic_thread)[0m
+[32;20m[2026-11-14 14:36:01,079] LMCache INFO:[0m PeriodicThread lmcache-mp-transfer-observations-11fe43b90 entering main loop (interval=30.0s) [3m(periodic_thread.py:312:lmcache.v1.periodic_thread)[0m
+[32;20m[2026-11-14 14:36:01,079] LMCache INFO:[0m Started PeriodicThread: lmcache-mp-transfer-observations-11fe43b90 (level=medium, interval=30.0s, init_wait=0.0s) [3m(periodic_thread.py:254:lmcache.v1.periodic_thread)[0m
+[32;20m[2026-11-14 14:36:01,079] LMCache INFO:[0m LMCache KV load policy: DEFAULT [3m(kv_load_policy.py:144:lmcache.v1.multiprocess.kv_load_policy)[0m
+[32;20m[2026-11-14 14:36:01,080] LMCache INFO:[0m PeriodicThread lmcache-mp-worker-reaper entering main loop (interval=30.0s) [3m(periodic_thread.py:312:lmcache.v1.periodic_thread)[0m
+[32;20m[2026-11-14 14:36:01,080] LMCache INFO:[0m Started PeriodicThread: lmcache-mp-worker-reaper (level=medium, interval=30.0s, init_wait=0.0s) [3m(periodic_thread.py:254:lmcache.v1.periodic_thread)[0m
+[32;20m[2026-11-14 14:36:01,080] LMCache INFO:[0m Composed 5 engine modules: engine_driven_transfer(dependencies=[]); lookup(dependencies=[]); p2p_controller(dependencies=[]); kv_events(dependencies=[lmcache_driven_transfer, engine_driven_transfer]); management(dependencies=[]) [3m(server.py:269:lmcache.v1.multiprocess.server)[0m
+[32;20m[2026-11-14 14:36:01,080] LMCache INFO:[0m Initializing MP usage context. [3m(mp.py:93:lmcache.usage_telemetry.mp)[0m
+[32;20m[2026-11-14 14:36:01,080] LMCache INFO:[0m Initializing MP continuous usage reporting. [3m(mp_continuous.py:228:lmcache.usage_telemetry.mp_continuous)[0m
+[32;20m[2026-11-14 14:36:01,080] LMCache INFO:[0m Started PeriodicThread: lmcache-usage-continuous (level=low, interval=600.0s, init_wait=600.0s) [3m(periodic_thread.py:254:lmcache.v1.periodic_thread)[0m
+[32;20m[2026-11-14 14:36:01,080] LMCache INFO:[0m Initializing L2 connector usage reporting. [3m(l2_usage.py:243:lmcache.usage_telemetry.l2_usage)[0m
+[32;20m[2026-11-14 14:36:01,080] LMCache INFO:[0m Started PeriodicThread: lmcache-usage-l2 (level=low, interval=600.0s, init_wait=600.0s) [3m(periodic_thread.py:254:lmcache.v1.periodic_thread)[0m
+[32;20m[2026-11-14 14:36:01,080] LMCache INFO:[0m Initializing L1 usage reporting. [3m(l1_usage.py:154:lmcache.usage_telemetry.l1_usage)[0m
+[32;20m[2026-11-14 14:36:01,080] LMCache INFO:[0m Started PeriodicThread: lmcache-usage-l1 (level=low, interval=600.0s, init_wait=600.0s) [3m(periodic_thread.py:254:lmcache.v1.periodic_thread)[0m
+[32;20m[2026-11-14 14:36:01,092] LMCache INFO:[0m Created AffinityThreadPool 'affinity-pool-0' with 1 worker slots: up to 1 distinct affinity keys each bind to their own thread before slots are shared. Compare this against the number of clients expected to connect to confirm routing. [3m(affinity_pool.py:60:lmcache.v1.multiprocess.affinity_pool)[0m
+[32;20m[2026-11-14 14:36:01,092] LMCache INFO:[0m LMCache zmq cache server is running on localhost:15557 [3m(server.py:452:lmcache.v1.multiprocess.server)[0m
+[32;20m[2026-11-14 14:36:01,092] LMCache INFO:[0m LMCache cache server is running... [3m(server.py:468:lmcache.v1.multiprocess.server)[0m
+[32;20m[2026-11-14 14:36:01,092] LMCache INFO:[0m LMCache HTTP server initialized [3m(http_server.py:171:lmcache.v1.multiprocess.http_server)[0m
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:18081 (Press CTRL+C to quit)
+INFO:     127.0.0.1:56530 - "GET /healthcheck HTTP/1.1" 200 OK
+=== vLLM Log (/tmp/cpu_device_e2e_engine_driven_zmq_vllm.log) ===
+W1114 14:36:02.188000 36542 torch/_opaque_base.py:6] torch._opaque_base is deprecated, use torch._custom_class_base instead
+W1114 14:36:02.188000 36542 torch/_library/opaque_object.py:288] register_opaque_type is deprecated, use register_custom_class instead
+W1114 14:36:02.188000 36542 torch/_library/opaque_object.py:211] typ='value' is deprecated, use typ='constant' instead
+W1114 14:36:03.517000 36542 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+objc[36542]: Class AVFFrameReceiver is implemented in both /opt/homebrew/Cellar/ffmpeg/9.0.2/lib/libavdevice.63.1.102.dylib (0x113490328) and ~/scout-clones/lmc-main/lib/python3.12/site-packages/cv2/.dylibs/libavdevice.61.3.100.dylib (0x114d6c3a8). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+objc[36542]: Class AVFAudioReceiver is implemented in both /opt/homebrew/Cellar/ffmpeg/9.0.2/lib/libavdevice.63.1.102.dylib (0x113490378) and ~/scout-clones/lmc-main/lib/python3.12/site-packages/cv2/.dylibs/libavdevice.61.3.100.dylib (0x114d6c3f8). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+W1114 14:36:05.012000 36542 torch/_library/triton.py:53] Triton not available, find_triton_kernels = []
+(APIServer pid=36542) INFO 11-14 14:36:05 [startup.py:38] 
+(APIServer pid=36542) INFO 11-14 14:36:05 [startup.py:38]        █     █     █▄   ▄█
+(APIServer pid=36542) INFO 11-14 14:36:05 [startup.py:38]  ▄▄ ▄█ █     █     █ ▀▄▀ █  version 0.33.1.dev202611141922
+(APIServer pid=36542) INFO 11-14 14:36:05 [startup.py:38]   █▄█▀ █     █     █     █  model   facebook/opt-125m
+(APIServer pid=36542) INFO 11-14 14:36:05 [startup.py:38]    ▀▀  ▀▀▀▀▀ ▀▀▀▀▀ ▀     ▀
+(APIServer pid=36542) INFO 11-14 14:36:05 [startup.py:38] 
+(APIServer pid=36542) INFO 11-14 14:36:05 [startup.py:96] non-default args: {'model_tag': 'facebook/opt-125m', 'port': 18000, 'model': 'facebook/opt-125m', 'dtype': 'bfloat16', 'max_model_len': 2048, 'enforce_eager': True, 'gpu_memory_utilization': 0.2, 'kv_cache_memory_bytes': 1073741824, 'enable_prefix_caching': False, 'max_num_seqs': 4, 'disable_hybrid_kv_cache_manager': True, 'kv_transfer_config': KVTransferConfig(kv_connector='LMCacheMPConnector', engine_id='0d9bd2da-5669-467d-a22f-f5eabb71d0b7', kv_buffer_device='cpu', kv_role='kv_both', kv_port=14579, kv_connector_extra_config={'lmcache.mp.host': 'tcp://localhost', 'lmcache.mp.port': 15557}, kv_connector_module_path='lmcache.integration.vllm.lmcache_mp_connector', enable_permute_local_kv=False, kv_load_failure_policy='fail')}
+(APIServer pid=36542) INFO 11-14 14:36:05 [arg_utils.py:954] HF_HUB_OFFLINE is True, replace model_id [facebook/opt-125m] to model_path [~/.cache/huggingface/hub/models--facebook--opt-125m/snapshots/8e3222ef756d4bdc256be5539b4a9d312e13bbf8]
+(APIServer pid=36542) WARNING 11-14 14:36:05 [interface.py:1583] Unknown vLLM environment variable detected: VLLM_LOG_FILE
+(APIServer pid=36542) WARNING 11-14 14:36:05 [interface.py:1583] Unknown vLLM environment variable detected: VLLM_READY_TIMEOUT
+(APIServer pid=36542) WARNING 11-14 14:36:05 [interface.py:1583] Unknown vLLM environment variable detected: VLLM_DEVICE
+(APIServer pid=36542) WARNING 11-14 14:36:05 [interface.py:1583] Unknown vLLM environment variable detected: VLLM_GPU_MEMORY_UTILIZATION
+(APIServer pid=36542) INFO 11-14 14:36:07 [model.py:764] Resolved architecture: OPTForCausalLM
+(APIServer pid=36542) WARNING 11-14 14:36:07 [model.py:2652] Casting torch.float16 to torch.bfloat16.
+(APIServer pid=36542) INFO 11-14 14:36:07 [model.py:2306] Using max model len 2048
+(APIServer pid=36542) WARNING 11-14 14:36:07 [vllm.py:1728] Enforce eager set, disabling torch.compile, CUDAGraphs, and JIT kernel warmup. This is equivalent to setting -cc.mode=none -cc.cudagraph_mode=none and --kernel_config.enable_jit_warmup=False
+(APIServer pid=36542) WARNING 11-14 14:36:07 [vllm.py:1752] Inductor compilation was disabled by user settings, optimizations settings that are only active during inductor compilation will be ignored.
+(APIServer pid=36542) INFO 11-14 14:36:07 [kernel.py:543] Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['native'], fused_add_rms_norm=['native'], gelu_and_mul_sparse=['native'])
+[32;20m[2026-11-14 14:36:08,033] LMCache INFO:[0m torch_dev=StubCPUDevice(device_type=cpu), torch_device_type=cpu [3m(_device_detect.py:311:lmcache.v1.platform._device_detect)[0m
+Traceback (most recent call last):
+  File "~/scout-clones/lmc-main/bin/vllm", line 6, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "~/scout-clones/lmc-main/lib/python3.12/site-packages/vllm/entrypoints/cli/main.py", line 117, in main
+    args.dispatch_function(args)
+  File "~/scout-clones/lmc-main/lib/python3.12/site-packages/vllm/entrypoints/cli/serve.py", line 156, in cmd
+    uvloop.run(run_server(args))
+  File "~/scout-clones/lmc-main/lib/python3.12/site-packages/uvloop/__init__.py", line 96, in run
+    return __asyncio.run(
+           ^^^^^^^^^^^^^^
+  File "~/.local/share/uv/python/cpython-3.12.16-macos-aarch64-none/lib/python3.12/asyncio/runners.py", line 195, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "~/.local/share/uv/python/cpython-3.12.16-macos-aarch64-none/lib/python3.12/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "uvloop/loop.pyx", line 1515, in uvloop.loop.Loop.run_until_complete
+  File "~/scout-clones/lmc-main/lib/python3.12/site-packages/uvloop/__init__.py", line 48, in wrapper
+    return await main
+           ^^^^^^^^^^
+  File "~/scout-clones/lmc-main/lib/python3.12/site-packages/vllm/entrypoints/launchers/api_server/entry.py", line 176, in run_server
+    await run_server_worker(listen_address, sock, args, **uvicorn_kwargs)
+  File "~/scout-clones/lmc-main/lib/python3.12/site-packages/vllm/entrypoints/launchers/api_server/entry.py", line 190, in run_server_worker
+    async with build_async_engine_client(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "~/.local/share/uv/python/cpython-3.12.16-macos-aarch64-none/lib/python3.12/contextlib.py", line 210, in __aenter__
+    return await anext(self.gen)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "~/scout-clones/lmc-main/lib/python3.12/site-packages/vllm/entrypoints/launchers/api_server/entry.py", line 60, in build_async_engine_client
+    async with build_async_engine_client_from_engine_args(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "~/.local/share/uv/python/cpython-3.12.16-macos-aarch64-none/lib/python3.12/contextlib.py", line 210, in __aenter__
+    return await anext(self.gen)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "~/scout-clones/lmc-main/lib/python3.12/site-packages/vllm/entrypoints/launchers/api_server/entry.py", line 82, in build_async_engine_client_from_engine_args
+    vllm_config = engine_args.create_engine_config(usage_context=usage_context)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "~/scout-clones/lmc-main/lib/python3.12/site-packages/vllm/engine/arg_utils.py", line 2950, in create_engine_config
+    config = VllmConfig(
+             ^^^^^^^^^^^
+  File "~/scout-clones/lmc-main/lib/python3.12/site-packages/pydantic/_internal/_dataclasses.py", line 121, in __init__
+    s.__pydantic_validator__.validate_python(ArgsKwargs(args, kwargs), self_instance=s)
+pydantic_core._pydantic_core.ValidationError: 1 validation error for VllmConfig
+  Value error, enable_extensible_kv_cache: a KV connector (e.g. LMCacheMPConnector with lmcache.mp.use_vmm_api) imports the KV cache through POSIX file descriptors, which needs it, but it is only supported on CUDA and ROCm. [type=value_error, input_value=ArgsKwargs((), {'model_co... 'shutdown_timeout': 0}), input_type=ArgsKwargs]
+    For further information visit https://errors.pydantic.dev/2.14/v/value_error
+Stopping LMCache server (PID=36520)

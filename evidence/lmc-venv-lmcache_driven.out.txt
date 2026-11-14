@@ -1,0 +1,115 @@
+==> CPU device test (OS: Darwin, Mode: vllm_e2e)
+    Python: Python 3.12.16
+    Bench transfer mode: engine_driven
+    E2E transport mode: engine_driven
+    Request transport: zmq
+    Ports: bench=18080/15555, e2e=18081/15557/18000
+
+==> Running CPU vLLM e2e test
+==> CPU vLLM e2e test (OS: Darwin)
+    Python: Python 3.12.16
+    uname:  Darwin eduroam-campus-10-36-62-68.campus-dynamic.uwaterloo.ca 25.5.0 Darwin Kernel Version 25.5.0: Mon Apr 27 20:41:12 PDT 2026; root:xnu-12377.121.6~2/RELEASE_ARM64_T6050 arm64
+ProductName:		macOS
+ProductVersion:		26.5.1
+BuildVersion:		25F80
+    LMCACHE_TRANSPORT_MODE=engine_driven
+    LMCACHE_DATA_MODE=shm
+    SKIP_INSTALL=1
+    Delegating to: ~/scout-clones/LMCache/.github/scripts/run-cpu-e2e-validation.sh
+Build ID: local
+Python: Python 3.12.16
+uv: uv 0.13.6 (Homebrew 2026-10-26 aarch64-apple-darwin)
+=== CPU Install Validation (Phase 1) — SKIPPED (SKIP_INSTALL=1) ===
+=== CPU E2E Validation (Phase 2) ===
+[Phase 2 / Step 1] numpy<2 install — SKIPPED (SKIP_INSTALL=1)
+[Phase 2 / Step 2] Preparing model facebook/opt-125m via download_gh_release_model.sh
+facebook/opt-125m already cached in ~/.cache/huggingface/hub/models--facebook--opt-125m/snapshots/8e3222ef756d4bdc256be5539b4a9d312e13bbf8, skipping download
+✅ Model download/check complete
+HF_HUB_OFFLINE=1 — serving facebook/opt-125m from the local HF hub cache
+[Phase 2 / Step 3] Starting LMCache server
+LMCache log: /tmp/cpu_device_e2e_engine_driven_zmq_lmcache.log
+Transport mode: engine-driven/shm (shared memory)
+LMCache server started (PID=35215)
+Waiting for LMCache healthcheck at http://localhost:18081/healthcheck (timeout: 30s)
+✅ LMCache server is healthy
+[Phase 2 / Step 4] Installing system libs (Linux only) and starting vLLM server
+Starting vLLM server...
+vLLM model: facebook/opt-125m
+vLLM extra args: <none>
+vLLM server started (PID=35248)
+Waiting for vLLM readiness at http://localhost:18000/v1/models (timeout: 300s)
+✅ vLLM server is ready
+[Phase 2 / Step 5] Sending E2E test request
+Completion response: {"id":"cmpl-bf72c62f37c5d532","object":"text_completion","created":1794684822,"model":"facebook/opt-125m","choices":[{"index":0,"text":"! I'm from the","logprobs":null,"finish_reason":"length","stop_reason":null,"token_ids":null,"prompt_logprobs":null,"prompt_token_ids":null,"routed_experts":null}],"service_tier":null,"system_fingerprint":"vllm-0.30.1.dev202609231158-aefc171e","usage":{"prompt_tokens":2,"total_tokens":7,"completion_tokens":5,"prompt_tokens_details":null,"completion_tokens_details":null},"kv_transfer_params":null,"ec_transfer_params":null,"metrics":null}
+✅ E2E request validation passed
+[Phase 2 / Step 5.5] Verifying transport mode: expecting 'shm'
+✅ Transport mode confirmed: shm
+[Phase 2 / Step 6] Cleaning up Phase 2 vLLM
+Stopping vLLM (PID=35248)
+✅ Phase 2 cleanup completed
+✅ CPU E2E validation passed
+=== Cache Hit Validation (Phase 3) ===
+Generated prompt file: /tmp/build_local_35191_phase3_prompt.txt (    1846 bytes)
+[Phase 3 / Step 1] Using before/after metric deltas (no metrics reset)
+[Phase 3 / Step 2] Starting vLLM (instance 1)
+Starting vLLM server...
+vLLM model: facebook/opt-125m
+vLLM extra args: <none>
+vLLM server started (PID=35485)
+Waiting for vLLM readiness at http://localhost:18000/v1/models (timeout: 300s)
+✅ vLLM server is ready
+[Phase 3 / Step 3] Request A (first) — expecting LMCache store
+Output 1:  a whale's tail. Elena was stunned. She had never seen a whale's tail before. She had never seen a whale's tail before. She had never seen a whale's tail before. She had never seen a whale's tail before. She
+L1 write chunks delta: 2
+✅ LMCache store verified (2 chunks written)
+[Phase 3 / Step 4] Request A (second) — expecting LMCache hit
+Output 2:  a whale's tail. Elena was stunned. She had never seen a whale's tail before. She had never seen a whale's tail before. She had never seen a whale's tail before. She had never seen a whale's tail before. She
+L1 read chunks delta: 2
+✅ LMCache hit verified on same instance (2 chunks read)
+[Phase 3 / Step 5] Resetting the external prefix cache through vLLM
+Reset response: {"success":true}
+✅ vLLM external prefix-cache reset succeeded
+[Phase 3 / Step 6] Request A after reset — expecting LMCache miss/store
+Output 3:  a whale's tail. Elena was stunned. She had never seen a whale's tail before. She had never seen a whale's tail before. She had never seen a whale's tail before. She had never seen a whale's tail before. She
+L1 read chunks delta after reset: 0
+L1 write chunks delta after reset: 2
+✅ Reset verified: old data missed and 2 chunks were rewritten
+[Phase 3 / Step 7] Request A again — expecting LMCache hit after repopulation
+Output 4:  a whale's tail. Elena was stunned. She had never seen a whale's tail before. She had never seen a whale's tail before. She had never seen a whale's tail before. She had never seen a whale's tail before. She
+L1 read chunks delta after repopulation: 2
+✅ LMCache hit verified after repopulation (2 chunks read)
+[Phase 3 / Step 8] Restarting vLLM (instance 2)
+Stopping vLLM (PID=35485)
+Starting vLLM server...
+vLLM model: facebook/opt-125m
+vLLM extra args: <none>
+vLLM server started (PID=35794)
+Waiting for vLLM readiness at http://localhost:18000/v1/models (timeout: 300s)
+✅ vLLM server is ready
+[Phase 3 / Step 9] Request A — expecting LMCache hit after vLLM restart
+Output 5:  a whale's tail. Elena was stunned. She had never seen a whale's tail before. She had never seen a whale's tail before. She had never seen a whale's tail before. She had never seen a whale's tail before. She
+L1 read chunks delta: 2
+✅ LMCache cross-instance hit verified (2 chunks read)
+[Phase 3 / Step 10] Verifying output consistency
+✅ All five outputs are identical — reset does not alter inference results
+[Phase 3 / Step 11] Request B (different prompt) — expecting cache MISS
+Output B:  that the colonists were breathing in the same amount of carbon dioxide as the planet’s atmosphere.
+
+The colonists’ breathing was not as bad as it was in the past. The colonists’ breathing was not as bad as it was
+L1 read chunks delta for new prompt: 0
+✅ Cache miss confirmed for different prompt — metrics are trustworthy
+[Phase 3 / Step 12] Cleaning up
+Stopping vLLM (PID=35794)
+Stopping LMCache server (PID=35215)
+✅ Phase 3 cleanup completed
+
+==========================================
+✅ All phases passed (Phase 1 + 2 + 3)
+==========================================
+==> CPU vLLM e2e test completed successfully
+
+==> CPU device test passed for modes:
+    Test mode: vllm_e2e
+    Server bench: engine_driven
+    vLLM e2e: engine_driven
+    Request transport: zmq

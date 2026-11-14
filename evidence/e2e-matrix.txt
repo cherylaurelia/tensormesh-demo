@@ -1,0 +1,12 @@
+lmc-venv lmcache_driven exit=0 vllm=0.30.1.dev202609231158
+lmc-venv engine_driven exit=0 vllm=0.30.1.dev202609231158
+lmc-main lmcache_driven exit=1 vllm=0.33.1.dev202611141922
+lmc-main engine_driven exit=1 vllm=0.33.1.dev202611141922
+PATCHED lmc-main lmcache_driven exit=0 vllm=0.33.1.dev202611141922
+PATCHED lmc-main engine_driven exit=0 vllm=0.33.1.dev202611141922
+PATCHED lmc-venv lmcache_driven exit=0 vllm=0.30.1.dev202609231158
+PATCHED lmc-venv engine_driven exit=0 vllm=0.30.1.dev202609231158
+PATCHED-r1 lmc-main lmcache_driven exit=0
+PATCHED-r1 lmc-main engine_driven exit=0
+PATCHED-r1 lmc-venv lmcache_driven exit=0
+PATCHED-r1 lmc-venv engine_driven exit=0

@@ -1,0 +1,30 @@
+@import "tailwindcss";
+
+/* From tensormesh.ai's Elementor globals: primary #214CAE, text #2F2B29, surface #F5F4F3,
+   line #E8E4E1, code #1B1917 with green #67D453, DM Sans. */
+@theme {
+  --color-primary: #214cae;
+  --color-primary-dark: #1a3d8c;
+  --color-primary-light: #3a63c4;
+  --color-primary-tint: #edf1fa;
+  --color-ink: #2f2b29;
+  --color-muted: #6f6a64;
+  --color-muted-dark: #4f4a46;
+  --color-surface: #f5f4f3;
+  --color-line: #e8e4e1;
+  --color-code: #1b1917;
+  --color-code-text: #e8e4e1;
+  --color-code-green: #67d453;
+  --color-good: #1d7a0c;
+  --color-good-tint: #e6f4e2;
+  --color-bad: #a3122a;
+  --color-bad-tint: #fbe9ec;
+  --font-sans: var(--font-dm-sans), system-ui, sans-serif;
+  --font-mono: var(--font-mono-face), ui-monospace, monospace;
+}
+
+body {
+  background: #ffffff;
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+}
